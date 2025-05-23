@@ -1,54 +1,23 @@
-# React + TypeScript + Vite
+# Research: Controlled vs Uncontrolled Components
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Controlled Components
+- **Definition:** React controls the input using `useState`.
+- **Value comes from:** Component state.
+- **Good for:** 
+  - Real-time validation (e.g., password strength).
+  - Conditional rendering (e.g., show/hide inputs).
+  - Enabling/disabling buttons based on input.
+- **Drawback:** More code and re-renders for every keystroke.
 
-Currently, two official plugins are available:
+## Uncontrolled Components
+- **Definition:** Input controls itself, React accesses value using `ref`.
+- **Value comes from:** The DOM (HTML element itself).
+- **Good for:** 
+  - Simple forms (e.g., contact forms).
+  - Third-party libraries (like file uploads).
+  - Performance-sensitive cases (less re-rendering).
+- **Drawback:** Harder to control and validate in real-time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Summary
+- Use **controlled** when you need React to "watch" the input.
+- Use **uncontrolled** when you just want the value at the end (like on submit).
